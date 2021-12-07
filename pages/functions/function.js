@@ -27,18 +27,18 @@
 // })()
 
 import Card from '@leafygreen-ui/card';
-import { H1, H2, H3, Subtitle, Body, InlineCode, Disclaimer, Overline } from '@leafygreen-ui/typography';
+import { H1, H2, H3, Subtitle, Body, InlineCode, Disclaimer, Overline} from '@leafygreen-ui/typography';
 
 function Function({ functions }) {
     return (
         <>
-            {functions.map((func) => (
+            {functions !== null && functions !== undefined ? functions.map((func) => (
                 <Card key={func.name}>
                     <H3>{func.name}</H3>
                     <Body>Tags: {func.tags}</Body>
                 </Card>
                 // <li key={post.name}>{post.name}</li>
-            ))}
+            )) : <H3>No functions found</H3>}
         </>
     )
 }
