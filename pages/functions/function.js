@@ -22,7 +22,7 @@ function Function({ functions }) {
         viewableFunctions.map((func) => (
           <Card key={func.name}>
             <H3>{func.name}</H3>
-            <Body>Tags: {func.tags}</Body>
+            <Body>Tags: {func.tags.join(" ")}</Body>
           </Card>
         ))
       ) : (

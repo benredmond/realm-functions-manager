@@ -5,7 +5,10 @@ import { useState, useEffect } from "react";
 const fuzzOptions = {
   includeScore: true,
   // Search in `author` and in `tags` array
-  keys: ["name"],
+  keys: [
+    { name: "name", weight: 3 },
+    { name: "tags", weight: 1 },
+  ],
 };
 
 export default function Search({ functions, setActiveFunctions }) {
@@ -15,7 +18,26 @@ export default function Search({ functions, setActiveFunctions }) {
     const fuse = new Fuse(functions, fuzzOptions);
 
     if (query.length > 0) {
-      const searchRes = fuse.search(query);
+      let tags = query.match(/(?<!\w)#\w+/g);
+      let queryParams = [];
+      let finalQuery;
+
+      if (tags && tags.length > 0) {
+        tags.forEach((tag) => {
+          queryParams.push({ tags: tag });
+        });
+
+        let name = query.match(/.+?(?=#)/)[0].trim();
+        if (name.length > 0) {
+          queryParams.push({ name });
+        }
+      } else {
+        queryParams.push({ name: query });
+      }
+
+      console.log(queryParams);
+      const searchRes = fuse.search({ $or: queryParams });
+
       let res = [];
       searchRes.forEach((result) => {
         res.push(result.item);
@@ -32,7 +54,7 @@ export default function Search({ functions, setActiveFunctions }) {
       <TextInput
         label={"Function Name"}
         aria-label={"Function Name"}
-        // description="Enter your email below"
+        description="Enter function name and/or any amount of #<tags>. Tags must follow name"
         // placeholder="your.email@example.com"
         onChange={(event) => {
           setQuery(event.target.value);
