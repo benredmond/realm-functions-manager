@@ -52,7 +52,7 @@ export async function getStaticProps() {
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            'apiKey': '0LxYuERv4C5KlyHbITZJPPwbw2aQ9Fu9uXYx3FT7HYUZQ5brfzaveoaiKOQI6xI1',
+            'apiKey': process.env.REALM_API_KEY,
         },
         body: JSON.stringify({"query":`{
             function_registries {
