@@ -27,8 +27,9 @@ export default function Search({ functions, setActiveFunctions }) {
           queryParams.push({ tags: tag });
         });
 
-        let name = query.match(/.+?(?=#)/)[0].trim();
-        if (name.length > 0) {
+        const matchedName = query.match(/.+?(?=#)/);
+        if (matchedName && matchedName.length > 0) {
+          let name = matchedName[0].trim();
           queryParams.push({ name });
         }
       } else {
