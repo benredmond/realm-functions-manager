@@ -20,7 +20,6 @@ export default function Search({ functions, setActiveFunctions }) {
     if (query.length > 0) {
       let tags = query.match(/(?<!\w)#\w+/g);
       let queryParams = [];
-      let finalQuery;
 
       if (tags && tags.length > 0) {
         tags.forEach((tag) => {
@@ -36,7 +35,6 @@ export default function Search({ functions, setActiveFunctions }) {
         queryParams.push({ name: query });
       }
 
-      console.log(queryParams);
       const searchRes = fuse.search({ $or: queryParams });
 
       let res = [];
@@ -63,6 +61,7 @@ export default function Search({ functions, setActiveFunctions }) {
         value={query}
         handleValidation={(foo) => foo}
         type={"search"}
+        className="search"
       />
     </>
   );

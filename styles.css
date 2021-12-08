@@ -1,0 +1,26 @@
+.container {
+    padding-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.function-search-list {
+    width: 30%;
+}
+
+.search {
+    padding-bottom: 1rem;
+}
+
+.function-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.function-card-body {
+    display: flex;
+}
+
+.tags {
+    color: dodgerblue;
+}
