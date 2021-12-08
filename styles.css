@@ -24,3 +24,7 @@
 .tags {
     color: dodgerblue;
 }
+
+a {
+    text-decoration: none;
+}
