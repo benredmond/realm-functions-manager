@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import FunctionCard from "../../components/functionCard";
-import { H3 } from "@leafygreen-ui/typography";
+import { H2, H3, Body } from "@leafygreen-ui/typography";
+import Code from "@leafygreen-ui/code";
+import Head from "next/head";
 
 export async function getStaticPaths() {
   const res = await fetch(
@@ -62,6 +64,7 @@ export async function getStaticProps({ params }) {
                 downloads
                 dependencies
                 description
+                raw
             }
         }`,
       }),
@@ -89,11 +92,21 @@ export async function getStaticProps({ params }) {
 export default function Function({ func }) {
   return (
     <>
-      {func !== null && func !== undefined ? (
-        <p>Post: {func.name}</p>
-      ) : (
-        <H3>No functions found</H3>
-      )}
+      <Head>
+        <title>Realm Functions Manager</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className={"container"}>
+        {func !== null && func !== undefined ? (
+          <div>
+            <H2>{func.name}</H2>
+            <Body>{func.description}</Body>
+            <Code language="javascript">{func.raw}</Code>
+          </div>
+        ) : (
+          <H3>No functions found</H3>
+        )}
+      </div>
     </>
   );
 }
