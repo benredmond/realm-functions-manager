@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import FunctionCard from "../../components/functionCard";
-import { H2, H3, Body } from "@leafygreen-ui/typography";
+import { H1, H2, H3, Body, Subtitle } from "@leafygreen-ui/typography";
+import Card from "@leafygreen-ui/card";
 import Code from "@leafygreen-ui/code";
 import Head from "next/head";
 
@@ -96,11 +97,18 @@ export default function Function({ func }) {
         <title>Realm Functions Manager</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={"container"}>
+      <div className="container">
         {func !== null && func !== undefined ? (
-          <div>
-            <H2>{func.name}</H2>
+          <div style={{ width: "30%" }}>
+            <H1 style={{ paddingBottom: "1rem" }}>{func.name}</H1>
             <Body>{func.description}</Body>
+            <Body>Function Dependencies:</Body>
+            <ul style={{ marginTop: "0rem", paddingLeft: "1.5rem" }}>
+              {func.dependencies.map((dep, idx) => (
+                <li key={idx}>{dep}</li>
+              ))}
+            </ul>
+            <Body>{func.dependencies}</Body>
             <Code language="javascript">{func.raw}</Code>
           </div>
         ) : (

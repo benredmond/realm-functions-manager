@@ -1,6 +1,7 @@
 import FunctionCard from "./functionCard";
 import { H3 } from "@leafygreen-ui/typography";
 import Link from "next/link";
+import ReactPaginate from "react-paginate";
 
 export default function FunctionList({ functions }) {
   return (

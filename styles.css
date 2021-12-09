@@ -17,12 +17,25 @@
     padding: 1rem;
     margin-bottom: 1rem;
 }
+
 .function-card-body {
     display: flex;
+    margin-top: 0.5rem
 }
 
+.function-tags-container {
+    flex: 1;
+}
+
+.function-downloads-container {
+    flex: 1;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+}
 .tags {
     color: dodgerblue;
+    margin-left: 0.5rem;
 }
 
 a {
