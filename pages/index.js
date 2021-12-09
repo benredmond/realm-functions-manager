@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import FunctionList from "../components/functionList";
 import Pagination from "../components/pagination";
 
-const PageSize = 5;
+const PageSize = 10;
 
 export default function Home({ functions }) {
   const [activeFunctions, setActiveFunctions] = useState(functions);

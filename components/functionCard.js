@@ -1,6 +1,9 @@
 import { Body, H3 } from "@leafygreen-ui/typography";
 import Card from "@leafygreen-ui/card";
 import { useEffect, useState } from "react";
+import Description from "./description";
+import Tags from "./tags";
+import Author from "./author";
 
 export default function FunctionCard({ func, greyBackground }) {
   const [style, setStyle] = useState({
@@ -33,19 +36,11 @@ export default function FunctionCard({ func, greyBackground }) {
     >
       <div className="flex-container">
         <H3 style={{ flex: 1 }}>{func.name}</H3>
-        <Body className="function-card-container">
-          <div className="function-author">Author:</div>
-          {func.owner_email}
-        </Body>
+        <Author author={func.owner_email} />
       </div>
-      <Body className="function-description">{func.description}</Body>
+      <Description description={func.description} />
+      <Tags tags={func.tags} style={{ flex: 1 }} />
       <div className="function-card-container">
-        <Body style={{ flex: 1 }}>
-          <div className="flex-container">
-            <div className="tags-label">Tags:</div>
-            <div className="tags">#{func.tags.join(" #")}</div>
-          </div>
-        </Body>
         <Body className="function-downloads-container">
           {func.downloads.length}{" "}
           {func.downloads.length === 1 ? "download" : "downloads"}

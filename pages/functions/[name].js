@@ -6,6 +6,10 @@ import Card from "@leafygreen-ui/card";
 import Code from "@leafygreen-ui/code";
 import Head from "next/head";
 import Copyable from "@leafygreen-ui/copyable";
+import Description from "../../components/description";
+import Tags from "../../components/tags";
+import Dependencies from "../../components/dependencies";
+import Author from "../../components/author";
 
 export async function getStaticPaths() {
   const res = await fetch(
@@ -61,7 +65,7 @@ export async function getStaticProps({ params }) {
         query: `{
             function_registry(query: {name:"${params.name}"}) {
                 name
-                owner_id
+                owner_email
                 tags
                 downloads
                 dependencies
@@ -98,26 +102,28 @@ export default function Function({ func }) {
         <title>Realm Functions Manager</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container">
+      <div>
         {func !== null && func !== undefined ? (
-          <div>
-            <div style={{ width: "40%" }}>
+          <div
+            style={{ width: "40%", marginLeft: "auto", marginRight: "auto" }}
+            className="container"
+          >
+            <div style={{ flex: "auto" }}>
               <H1 style={{ paddingBottom: "1rem" }}>{func.name}</H1>
-              <Body>{func.description}</Body>
-              <Body>Function Dependencies:</Body>
-              <ul style={{ marginTop: "0rem", paddingLeft: "1.5rem" }}>
-                {func.dependencies.map((dep, idx) => (
-                  <li key={idx}>{dep}</li>
-                ))}
-              </ul>
-              <Code language="javascript">{func.raw}</Code>
+              <Author author={func.owner_email} />
+              <Tags tags={func.tags} style={{ flex: 1 }} />
+              <Description description={func.description} />
+              <Dependencies dependencies={func.dependencies} />
+              <div style={{ marginTop: "1rem" }}>
+                <Code language="javascript">{func.raw}</Code>
+              </div>
             </div>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, marginLeft: "3rem", width: "10%" }}>
               <Copyable label="Install">rfm i -s {func.name}</Copyable>
             </div>
           </div>
         ) : (
-          <H3>No functions found</H3>
+          <H3 style={{ color: "#8F221B" }}>No functions found</H3>
         )}
       </div>
     </>

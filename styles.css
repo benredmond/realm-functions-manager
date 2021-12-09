@@ -35,7 +35,7 @@
 }
 
 .function-description {
-    margin-top: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 .function-author {
@@ -46,6 +46,12 @@
 
 .tags-label{
     font-weight: bold;
+    margin-top: 0.04rem;
+}
+
+.description-label{
+    font-weight: bold;
+    margin-top: 0.02rem;
 }
 
 .tags {
