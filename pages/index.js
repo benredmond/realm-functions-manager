@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Search from "../components/search";
 import Card from "@leafygreen-ui/card";
-import { Body, H1 } from "@leafygreen-ui/typography";
+import { Body, H1, H3 } from "@leafygreen-ui/typography";
 import { useEffect, useState } from "react";
 import FunctionList from "../components/functionList";
 import ReactPaginate from "react-paginate";
@@ -43,6 +43,7 @@ export default function Home({ functions }) {
                 functions={functions}
                 setActiveFunctions={setViewableFunctions}
               />
+              <H3 className="search-title">Search Results</H3>
               <FunctionList functions={viewableFunctions} />
             </div>
             {/*<ReactPaginate*/}
@@ -77,7 +78,7 @@ export async function getStaticProps() {
         query: `{
             function_registries {
                 name
-                owner_id
+                owner_email
                 tags
                 downloads
                 dependencies
@@ -89,12 +90,11 @@ export async function getStaticProps() {
   );
   const functionsRes = await res.json();
 
-  if (!functionsRes) {
+  if (!functionsRes || !functionsRes.data) {
     return {
       notFound: true,
     };
   }
-
   let functions = functionsRes.data.function_registries;
   functions.sort((a, b) => (a.downloads.length < b.downloads.length ? 1 : -1));
 
@@ -105,6 +105,6 @@ export async function getStaticProps() {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    revalidate: 60, // In seconds
+    revalidate: 10, // In seconds
   };
 }

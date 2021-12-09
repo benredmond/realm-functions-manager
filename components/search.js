@@ -41,6 +41,7 @@ export default function Search({ functions, setActiveFunctions }) {
       searchRes.forEach((result) => {
         res.push(result.item);
       });
+      // console.log(res);
       setActiveFunctions(res);
     } else {
       setActiveFunctions(functions);
@@ -51,10 +52,9 @@ export default function Search({ functions, setActiveFunctions }) {
   return (
     <>
       <TextInput
-        label={"Function Name"}
+        // label={"Function Name"}
         aria-label={"Function Name"}
         description="Enter function name and/or any amount of #<tags>. Tags must follow name"
-        // placeholder="your.email@example.com"
         onChange={(event) => {
           setQuery(event.target.value);
         }}

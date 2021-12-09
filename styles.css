@@ -6,7 +6,7 @@
 }
 
 .function-search-list {
-    width: 30%;
+    width: 40%;
 }
 
 .search {
@@ -14,17 +14,8 @@
 }
 
 .function-card {
-    padding: 1rem;
     margin-bottom: 1rem;
-}
-
-.function-card-body {
-    display: flex;
-    margin-top: 0.5rem
-}
-
-.function-tags-container {
-    flex: 1;
+    padding: 0.8rem 1rem 0.9rem;
 }
 
 .function-downloads-container {
@@ -33,9 +24,39 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.flex-container {
+    display: flex;
+}
+
+.function-card-container {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+.function-description {
+    margin-top: 0.5rem;
+}
+
+.function-author {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    margin-top: 0.05rem;
+}
+
+.tags-label{
+    font-weight: bold;
+}
+
 .tags {
     color: dodgerblue;
     margin-left: 0.5rem;
+}
+
+.search-title {
+    text-decoration: underline;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 a {

@@ -1,11 +1,18 @@
 import { Body, H3 } from "@leafygreen-ui/typography";
 import Card from "@leafygreen-ui/card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function FunctionCard({ func, greyBackground }) {
   const [style, setStyle] = useState({
-    background: greyBackground ? "#e8e8e8" : "white",
+    background: greyBackground ? "#E7EEEC" : "#F9FBFA",
   });
+
+  useEffect(() => {
+    setStyle((prevState) => ({
+      ...prevState,
+      background: greyBackground ? "#E7EEEC" : "#F9FBFA",
+    }));
+  }, [greyBackground]);
 
   return (
     <Card
@@ -24,16 +31,24 @@ export default function FunctionCard({ func, greyBackground }) {
         }));
       }}
     >
-      <H3>{func.name}</H3>
-      <Body style={{ marginTop: "0.5rem" }}>{func.description}</Body>
-      <div className="function-card-body">
-        <Body className="function-tags-container">
-          <div style={{ display: "flex" }}>
-            Tags: <div className="tags"> #{func.tags.join(" #")}</div>
+      <div className="flex-container">
+        <H3 style={{ flex: 1 }}>{func.name}</H3>
+        <Body className="function-card-container">
+          <div className="function-author">Author:</div>
+          abc@gmail.com
+        </Body>
+      </div>
+      <Body className="function-description">{func.description}</Body>
+      <div className="function-card-container">
+        <Body style={{ flex: 1 }}>
+          <div className="flex-container">
+            <div className="tags-label">Tags:</div>
+            <div className="tags">#{func.tags.join(" #")}</div>
           </div>
         </Body>
         <Body className="function-downloads-container">
-          {func.downloads.length} downloads
+          {func.downloads.length}{" "}
+          {func.downloads.length === 1 ? "download" : "downloads"}
         </Body>
       </div>
     </Card>
