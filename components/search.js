@@ -15,6 +15,14 @@ export default function Search({ functions, setActiveFunctions }) {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
+    const curQuery = localStorage.getItem("currentQuery");
+    if (curQuery) {
+      setQuery(curQuery);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("currentQuery", query);
     const fuse = new Fuse(functions, fuzzOptions);
 
     if (query.length > 0) {

@@ -7,12 +7,23 @@ import { useEffect, useState } from "react";
 import FunctionList from "../components/functionList";
 import Pagination from "../components/pagination";
 
-const PageSize = 10;
+const PageSize = 5;
 
 export default function Home({ functions }) {
   const [activeFunctions, setActiveFunctions] = useState(functions);
   const [currentPage, setCurrentPage] = useState(1);
   const [functionsOnPage, setFunctionsOnPage] = useState(null);
+
+  useEffect(() => {
+    const curPage = parseInt(localStorage.getItem("currentPage"));
+    if (curPage) {
+      setCurrentPage(curPage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("currentPage", currentPage.toString());
+  }, [currentPage]);
 
   useEffect(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -37,7 +48,9 @@ export default function Home({ functions }) {
                 functions={functions}
                 setActiveFunctions={(functions) => {
                   setActiveFunctions(functions);
-                  setCurrentPage(1);
+                  if (Math.ceil(functions.length / PageSize) < currentPage) {
+                    setCurrentPage(1);
+                  }
                 }}
               />
               <H3 className="search-title">Search Results</H3>

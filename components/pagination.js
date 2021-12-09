@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { Body, H3 } from "@leafygreen-ui/typography";
 
 const DOTS = "...";
 
@@ -7,7 +8,7 @@ const range = (start, end) => {
   return Array.from({ length }, (_, idx) => idx + start);
 };
 
-export const usePagination = ({
+const usePagination = ({
   totalCount,
   pageSize,
   siblingCount = 1,
@@ -104,7 +105,11 @@ export default function Pagination({
       </li>
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
+          return (
+            <li className="pagination-item dots">
+              <Body>&#8230;</Body>
+            </li>
+          );
         }
 
         return (
@@ -115,7 +120,7 @@ export default function Pagination({
             onClick={() => onPageChange(pageNumber)}
             key={pageNumber}
           >
-            {pageNumber}
+            <Body>{pageNumber}</Body>
           </li>
         );
       })}
