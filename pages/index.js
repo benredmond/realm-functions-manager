@@ -5,26 +5,20 @@ import Card from "@leafygreen-ui/card";
 import { Body, H1, H3 } from "@leafygreen-ui/typography";
 import { useEffect, useState } from "react";
 import FunctionList from "../components/functionList";
-import ReactPaginate from "react-paginate";
+import Pagination from "../components/pagination";
 
-const functionsPerPage = 2;
+const PageSize = 10;
 
 export default function Home({ functions }) {
-  const [viewableFunctions, setViewableFunctions] = useState(functions);
-  const [offset, setOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(0);
+  const [activeFunctions, setActiveFunctions] = useState(functions);
+  const [currentPage, setCurrentPage] = useState(1);
   const [functionsOnPage, setFunctionsOnPage] = useState(null);
 
   useEffect(() => {
-    const endOffset = offset + functionsPerPage;
-    setFunctionsOnPage(viewableFunctions.slice(offset, endOffset));
-    setPageCount(Math.ceil(functions.length / functionsPerPage));
-  }, [offset, functions, functionsPerPage]);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * functionsPerPage) % functions.length;
-    setOffset(newOffset);
-  };
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    setFunctionsOnPage(activeFunctions.slice(firstPageIndex, lastPageIndex));
+  }, [functions, currentPage, activeFunctions]);
 
   return (
     <>
@@ -41,19 +35,21 @@ export default function Home({ functions }) {
             <div className="function-search-list">
               <Search
                 functions={functions}
-                setActiveFunctions={setViewableFunctions}
+                setActiveFunctions={(functions) => {
+                  setActiveFunctions(functions);
+                  setCurrentPage(1);
+                }}
               />
               <H3 className="search-title">Search Results</H3>
-              <FunctionList functions={viewableFunctions} />
+              <FunctionList functions={functionsOnPage} />
+              <Pagination
+                className="pagination"
+                currentPage={currentPage}
+                onPageChange={(page) => setCurrentPage(page)}
+                pageSize={PageSize}
+                totalCount={activeFunctions.length}
+              />
             </div>
-            {/*<ReactPaginate*/}
-            {/*  pageCount={pageCount}*/}
-            {/*  breakLabel="..."*/}
-            {/*  nextLabel="next"*/}
-            {/*  onPageChange={handlePageClick}*/}
-            {/*  previousLabel="< previous"*/}
-            {/*  id={"container"}*/}
-            {/*/>*/}
           </div>
         </main>
       </div>

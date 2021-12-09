@@ -35,7 +35,7 @@ export default function FunctionCard({ func, greyBackground }) {
         <H3 style={{ flex: 1 }}>{func.name}</H3>
         <Body className="function-card-container">
           <div className="function-author">Author:</div>
-          abc@gmail.com
+          {func.owner_email}
         </Body>
       </div>
       <Body className="function-description">{func.description}</Body>
