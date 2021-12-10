@@ -1,6 +1,35 @@
 import Code from "@leafygreen-ui/code";
 import Head from "next/head";
 
+export default function Function({ func }) {
+  return (
+    <>
+      <Head>
+        <title>Realm Functions Manager</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="container">
+        {func !== null && func !== undefined ? (
+          <div style={{ width: "30%" }}>
+            <h1 style={{ paddingBottom: "1rem" }}>{func.name}</h1>
+            <p>{func.description}</p>
+            <p>Function Dependencies:</p>
+            <ul style={{ marginTop: "0rem", paddingLeft: "1.5rem" }}>
+              {func.dependencies.map((dep, idx) => (
+                <li key={idx}>{dep}</li>
+              ))}
+            </ul>
+            <p>{func.dependencies}</p>
+            <Code language="javascript">{func.raw}</Code>
+          </div>
+        ) : (
+          <h3>No functions found</h3>
+        )}
+      </div>
+    </>
+  );
+}
+
 export async function getStaticPaths() {
   const res = await fetch(
     "https://us-east-1.aws.realm.mongodb.com/api/client/v2.0/app/rfm-pzvlr/graphql",
@@ -83,33 +112,4 @@ export async function getStaticProps({ params }) {
     // - At most once every 10 seconds
     revalidate: 60, // In seconds
   };
-}
-
-export default function Function({ func }) {
-  return (
-    <>
-      <Head>
-        <title>Realm Functions Manager</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="container">
-        {func !== null && func !== undefined ? (
-          <div style={{ width: "30%" }}>
-            <h1 style={{ paddingBottom: "1rem" }}>{func.name}</h1>
-            <p>{func.description}</p>
-            <p>Function Dependencies:</p>
-            <ul style={{ marginTop: "0rem", paddingLeft: "1.5rem" }}>
-              {func.dependencies.map((dep, idx) => (
-                <li key={idx}>{dep}</li>
-              ))}
-            </ul>
-            <p>{func.dependencies}</p>
-            <Code language="javascript">{func.raw}</Code>
-          </div>
-        ) : (
-          <h3>No functions found</h3>
-        )}
-      </div>
-    </>
-  );
 }
