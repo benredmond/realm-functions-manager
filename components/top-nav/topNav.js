@@ -3,7 +3,6 @@ import React from "react";
 import classNames from "classnames";
 
 import SearchBar from "../search-bar";
-import { FunctionsContext } from "../functions-provider/provider";
 
 import styles from "./styles.module.css";
 

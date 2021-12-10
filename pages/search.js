@@ -1,45 +1,54 @@
-import Head from "next/head";
 import Search from "../components/search-bar";
 import Layout from "../components/layout";
+import Pagination from "../components/pagination";
 import { useEffect, useState } from "react";
 import FunctionList from "../components/functionList";
 import { LayoutVariant } from "../components/layout/layout";
 
-const functionsPerPage = 2;
+const PageSize = 10;
 
 export default function Home({ functions, query }) {
-  const [viewableFunctions, setViewableFunctions] = useState(functions);
-  const [offset, setOffset] = useState(0);
-  const [pageCount, setPageCount] = useState(0);
+  const [activeFunctions, setActiveFunctions] = useState(functions);
+  const [currentPage, setCurrentPage] = useState(1);
   const [functionsOnPage, setFunctionsOnPage] = useState(null);
 
   useEffect(() => {
-    const endOffset = offset + functionsPerPage;
-    setFunctionsOnPage(viewableFunctions.slice(offset, endOffset));
-    setPageCount(Math.ceil(functions.length / functionsPerPage));
-  }, [offset, functions, functionsPerPage]);
+    const curPage = parseInt(localStorage.getItem("currentPage"));
+    if (curPage) {
+      setCurrentPage(curPage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("currentPage", currentPage.toString());
+  }, [currentPage]);
+
+  useEffect(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    setFunctionsOnPage(activeFunctions.slice(firstPageIndex, lastPageIndex));
+  }, [functions, currentPage, activeFunctions]);
 
   return (
     <Layout variant={LayoutVariant.SearchPage}>
-      <Head>
-        <title>Realm Functions Manager</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="container">
-        <h1>Realm Functions Manager</h1>
-      </div>
-      <div>
-        <main>
-          <div className="container">
-            <div className="function-search-list">
-              <Search
-                functions={functions}
-                setActiveFunctions={setViewableFunctions}
-              />
-              <FunctionList functions={viewableFunctions} />
-            </div>
-          </div>
-        </main>
+      <Search
+        functions={functions}
+        setActiveFunctions={(functions) => {
+          setActiveFunctions(functions);
+          if (Math.ceil(functions.length / PageSize) < currentPage) {
+            setCurrentPage(1);
+          }
+        }}
+      />
+      <div className="function-search-list">
+        <FunctionList functions={functionsOnPage} />
+        <Pagination
+          className="pagination"
+          currentPage={currentPage}
+          onPageChange={(page) => setCurrentPage(page)}
+          pageSize={PageSize}
+          totalCount={activeFunctions.length}
+        />
       </div>
     </Layout>
   );
