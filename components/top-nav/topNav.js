@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Search from "../search";
+import SearchBar from "../search-bar";
 import { H1 } from "@leafygreen-ui/typography";
 
-import "./styles.module.css";
+import styles from "./styles.module.css";
 
 export const TopNavVariant = {
   Small: "small",
@@ -17,8 +17,8 @@ export default function TopNav({ variant, title = "Realm Functions Manager" }) {
       </Head>
 
       <H1>Realm Functions Manager</H1>
-      <div className="function-search-list">
-        <Search functions={[]} setActiveFunctions={() => {}} />
+      <div className={styles.searchBar}>
+        <SearchBar functions={[]} setActiveFunctions={() => {}} />
       </div>
     </>
   );

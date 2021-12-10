@@ -1,11 +1,8 @@
 import Head from "next/head";
-import Link from "next/link";
-import Search from "../components/search";
-import Card from "@leafygreen-ui/card";
-import { Body, H1 } from "@leafygreen-ui/typography";
+import Search from "../components/search-bar";
+import { H1 } from "@leafygreen-ui/typography";
 import { useEffect, useState } from "react";
 import FunctionList from "../components/functionList";
-import ReactPaginate from "react-paginate";
 
 const functionsPerPage = 2;
 
@@ -45,14 +42,6 @@ export default function Home({ functions }) {
               />
               <FunctionList functions={viewableFunctions} />
             </div>
-            {/*<ReactPaginate*/}
-            {/*  pageCount={pageCount}*/}
-            {/*  breakLabel="..."*/}
-            {/*  nextLabel="next"*/}
-            {/*  onPageChange={handlePageClick}*/}
-            {/*  previousLabel="< previous"*/}
-            {/*  id={"container"}*/}
-            {/*/>*/}
           </div>
         </main>
       </div>

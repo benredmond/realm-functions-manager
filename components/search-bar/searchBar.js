@@ -2,6 +2,8 @@ import Fuse from "fuse.js";
 import TextInput from "@leafygreen-ui/text-input";
 import { useState, useEffect } from "react";
 
+import styles from "./styles.module.css";
+
 const fuzzOptions = {
   includeScore: true,
   // Search in `author` and in `tags` array
@@ -11,7 +13,7 @@ const fuzzOptions = {
   ],
 };
 
-export default function Search({ functions, setActiveFunctions }) {
+export default function SearchBar({ functions, setActiveFunctions }) {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -49,18 +51,16 @@ export default function Search({ functions, setActiveFunctions }) {
   }, [query, functions]);
 
   return (
-    <>
-      <TextInput
-        aria-label={"Function Name"}
-        onChange={(event) => {
-          setQuery(event.target.value);
-        }}
-        placeholder="Enter function name and/or any amount of #<tags>. Tags must follow name"
-        value={query}
-        handleValidation={(foo) => foo}
-        type={"search"}
-        className="search-input"
-      />
-    </>
+    <TextInput
+      aria-label={"Function Name"}
+      onChange={(event) => {
+        setQuery(event.target.value);
+      }}
+      placeholder="Enter function name and/or any amount of #<tags>. Tags must follow name"
+      value={query}
+      handleValidation={(foo) => foo}
+      type={"search"}
+      className={styles.searchInput}
+    />
   );
 }
