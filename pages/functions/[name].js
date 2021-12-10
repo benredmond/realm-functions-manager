@@ -182,7 +182,6 @@ export default function Function({ func }) {
               <div
                 style={{
                   marginTop: "2rem",
-                  width: "70%",
                 }}
               >
                 <Body style={{ fontWeight: "bold" }}>
