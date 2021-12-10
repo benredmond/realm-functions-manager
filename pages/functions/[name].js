@@ -172,32 +172,25 @@ export default function Function({ func }) {
               ) : (
                 ""
               )}
-
-              <div style={{ display: "flex", marginTop: "0.5rem" }}>
-                <div
-                  style={{
-                    marginTop: "1rem",
-                    width: "100%",
-                    marginRight: "3rem",
-                  }}
-                >
-                  <Body style={{ fontWeight: "bold" }}>
-                    Function Source Code:
-                  </Body>
-                  <Code language="javascript">{func.raw}</Code>
-                </div>
-                <div
-                  style={{
-                    flex: 1,
-                    marginTop: "1.2rem",
-                    width: "50%",
-                  }}
-                >
-                  <Copyable label="Install">{`rfm i -s ${func.name}`}</Copyable>
-                </div>
+              <div
+                style={{
+                  marginTop: "1rem",
+                }}
+              >
+                <Copyable label="Install">{`rfm i -s ${func.name}`}</Copyable>
+              </div>
+              <div
+                style={{
+                  marginTop: "2rem",
+                  width: "70%",
+                }}
+              >
+                <Body style={{ fontWeight: "bold" }}>
+                  Function Source Code:
+                </Body>
+                <Code language="javascript">{func.raw}</Code>
               </div>
             </div>
-            {/*</div>*/}
           </Card>
         ) : (
           <H3 style={{ color: "#8F221B" }}>No functions found</H3>
