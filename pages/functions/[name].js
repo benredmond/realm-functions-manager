@@ -140,28 +140,34 @@ export default function Function({ func }) {
                 <Tags tags={func.tags} style={{ flex: 1 }} />
                 <Description description={func.description} />
                 <Dependencies dependencies={func.dependencies} />
-                <Body style={{ fontWeight: "bold", marginTop: "1rem" }}>
-                  Function Values:
-                </Body>
-                <Table
-                  data={func.values}
-                  columns={[
-                    <TableHeader label="Name" key="name" />,
-                    <TableHeader label="Description" key="description" />,
-                  ]}
-                  style={{
-                    width: "40%",
-                    backgroundColor: "#F9FAF10",
-                  }}
-                >
-                  {({ datum }, idx) => (
-                    <Row key={idx}>
-                      <Cell>{datum.name}</Cell>
-                      <Cell>{datum.description}</Cell>
-                    </Row>
-                  )}
-                </Table>
-                <div style={{ display: "flex", marginTop: "2rem" }}>
+
+                {func.values.length > 0 ? (
+                  <div>
+                    <Body style={{ fontWeight: "bold" }}>Function Values:</Body>
+                    <Table
+                      data={func.values}
+                      columns={[
+                        <TableHeader label="Name" key="name" />,
+                        <TableHeader label="Description" key="description" />,
+                      ]}
+                      style={{
+                        width: "50%",
+                        backgroundColor: "#F9FAF10",
+                      }}
+                    >
+                      {({ datum }, idx) => (
+                        <Row key={idx}>
+                          <Cell style={{ width: "20%" }}>{datum.name}</Cell>
+                          <Cell>{datum.description}</Cell>
+                        </Row>
+                      )}
+                    </Table>
+                  </div>
+                ) : (
+                  ""
+                )}
+
+                <div style={{ display: "flex", marginTop: "0.5rem" }}>
                   <div style={{ marginTop: "1rem", width: "70%" }}>
                     <Body style={{ fontWeight: "bold" }}>
                       Function Source Code:
