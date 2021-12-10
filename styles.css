@@ -14,3 +14,25 @@ html, body {
 * {
 	font-family: "Montserrat";
 }
+
+.function-card-container {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+
+.tags-label{
+    font-weight: bold;
+    margin-top: 0.04rem;
+}
+
+.tags {
+    color: dodgerblue;
+    margin-left: 0.5rem;
+}
+
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
