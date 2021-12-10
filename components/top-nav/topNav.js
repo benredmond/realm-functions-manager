@@ -56,14 +56,16 @@ export default function TopNav({
         {variant === TopNavVariant.Large && (
           <h3>"like npm but for realm functions!" - someone</h3>
         )}
-        <div className={styles.searchBar}>
-          <SearchBar
-            functions={functions || []}
-            setActiveFunctions={() => {}}
-            options={functionOptions}
-            useReactSelect
-          />
-        </div>
+        {variant === TopNavVariant.Large && (
+          <div className={styles.searchBar}>
+            <SearchBar
+              functions={functions || []}
+              setActiveFunctions={() => {}}
+              options={functionOptions}
+              useReactSelect
+            />
+          </div>
+        )}
       </div>
     </>
   );
