@@ -118,74 +118,86 @@ export default function Function({ func }) {
               marginTop: "4rem",
             }}
           >
+            {/*<div*/}
+            {/*  className="container"*/}
+            {/*  style={{*/}
+
+            {/*  }}*/}
+            {/*>*/}
             <div
-              className="container"
               style={{
+                flex: "auto",
                 width: "70%",
                 marginLeft: "auto",
                 marginRight: "auto",
                 marginTop: "1rem",
+                marginBottom: "3rem",
               }}
             >
-              <div style={{ flex: "auto" }}>
-                <H1 style={{ paddingBottom: "1rem" }}>{func.name}</H1>
-                <hr />
-                <div className="flex-container">
-                  <Author author={func.owner_email} />
-                  <Body style={{ marginTop: "0.5rem", marginLeft: "auto" }}>
-                    {func.downloads.length}{" "}
-                    {func.downloads.length === 1 ? "download" : "downloads"}
-                  </Body>
-                </div>
-                <Tags tags={func.tags} style={{ flex: 1 }} />
-                <Description description={func.description} />
-                <Dependencies dependencies={func.dependencies} />
+              <H1 style={{ paddingBottom: "1rem" }}>{func.name}</H1>
+              <hr />
+              <div className="flex-container">
+                <Author author={func.owner_email} />
+                <Body style={{ marginTop: "0.5rem", marginLeft: "auto" }}>
+                  {func.downloads.length}{" "}
+                  {func.downloads.length === 1 ? "download" : "downloads"}
+                </Body>
+              </div>
+              <Tags tags={func.tags} style={{ flex: 1 }} />
+              <Description description={func.description} />
+              <Dependencies dependencies={func.dependencies} />
 
-                {func.values.length > 0 ? (
-                  <div>
-                    <Body style={{ fontWeight: "bold" }}>Function Values:</Body>
-                    <Table
-                      data={func.values}
-                      columns={[
-                        <TableHeader label="Name" key="name" />,
-                        <TableHeader label="Description" key="description" />,
-                      ]}
-                      style={{
-                        width: "50%",
-                        backgroundColor: "#F9FAF10",
-                      }}
-                    >
-                      {({ datum }, idx) => (
-                        <Row key={idx}>
-                          <Cell style={{ width: "20%" }}>{datum.name}</Cell>
-                          <Cell>{datum.description}</Cell>
-                        </Row>
-                      )}
-                    </Table>
-                  </div>
-                ) : (
-                  ""
-                )}
-
-                <div style={{ display: "flex", marginTop: "0.5rem" }}>
-                  <div style={{ marginTop: "1rem", width: "70%" }}>
-                    <Body style={{ fontWeight: "bold" }}>
-                      Function Source Code:
-                    </Body>
-                    <Code language="javascript">{func.raw}</Code>
-                  </div>
-                  <div
+              {func.values.length > 0 ? (
+                <div>
+                  <Body style={{ fontWeight: "bold" }}>Function Values:</Body>
+                  <Table
+                    data={func.values}
+                    columns={[
+                      <TableHeader label="Name" key="name" />,
+                      <TableHeader label="Description" key="description" />,
+                    ]}
                     style={{
-                      flex: 1,
-                      marginLeft: "3rem",
-                      marginTop: "1.2rem",
+                      width: "50%",
+                      backgroundColor: "#F9FAF10",
                     }}
                   >
-                    <Copyable label="Install">{`rfm i -s ${func.name}`}</Copyable>
-                  </div>
+                    {({ datum }, idx) => (
+                      <Row key={idx}>
+                        <Cell style={{ width: "20%" }}>{datum.name}</Cell>
+                        <Cell>{datum.description}</Cell>
+                      </Row>
+                    )}
+                  </Table>
+                </div>
+              ) : (
+                ""
+              )}
+
+              <div style={{ display: "flex", marginTop: "0.5rem" }}>
+                <div
+                  style={{
+                    marginTop: "1rem",
+                    width: "100%",
+                    marginRight: "3rem",
+                  }}
+                >
+                  <Body style={{ fontWeight: "bold" }}>
+                    Function Source Code:
+                  </Body>
+                  <Code language="javascript">{func.raw}</Code>
+                </div>
+                <div
+                  style={{
+                    flex: 1,
+                    marginTop: "1.2rem",
+                    width: "50%",
+                  }}
+                >
+                  <Copyable label="Install">{`rfm i -s ${func.name}`}</Copyable>
                 </div>
               </div>
             </div>
+            {/*</div>*/}
           </Card>
         ) : (
           <H3 style={{ color: "#8F221B" }}>No functions found</H3>
