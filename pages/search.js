@@ -7,7 +7,7 @@ import { LayoutVariant } from "../components/layout/layout";
 
 const functionsPerPage = 2;
 
-export default function Home({ functions }) {
+export default function Home({ functions, query }) {
   const [viewableFunctions, setViewableFunctions] = useState(functions);
   const [offset, setOffset] = useState(0);
   const [pageCount, setPageCount] = useState(0);
@@ -18,11 +18,6 @@ export default function Home({ functions }) {
     setFunctionsOnPage(viewableFunctions.slice(offset, endOffset));
     setPageCount(Math.ceil(functions.length / functionsPerPage));
   }, [offset, functions, functionsPerPage]);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * functionsPerPage) % functions.length;
-    setOffset(newOffset);
-  };
 
   return (
     <Layout variant={LayoutVariant.SearchPage}>
