@@ -3,15 +3,13 @@ import Layout, { LayoutVariant } from "../components/layout/layout";
 
 export default function Home({}) {
   return (
-    <>
-      <Layout variant={LayoutVariant.LandingPage}>
-        <H1>Keybindings:</H1>
-        <div>
-          <H3>[Cmd+P] - Focus on search bar from anywhere</H3>
-          <H3>[/] - Focus on search bar from anywhere</H3>
-        </div>
-      </Layout>
-    </>
+    <Layout variant={LayoutVariant.LandingPage}>
+      <H1>Keybindings:</H1>
+      <div>
+        <H3>[Cmd+P] - Focus on search bar from anywhere</H3>
+        <H3>[/] - Focus on search bar from anywhere</H3>
+      </div>
+    </Layout>
   );
 }
 

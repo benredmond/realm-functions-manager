@@ -16,9 +16,11 @@ export default function Layout({
   children,
 }) {
   return (
-    <>
-      <TopNav variant={TopNavVariant.Small} title={variantToTitle[variant]} />
-      <div className={styles.container}>{children}</div>
-    </>
+    <div className={styles.background}>
+      <div className={styles.foreground}>
+        <TopNav variant={TopNavVariant.Small} title={variantToTitle[variant]} />
+        <div className={styles.container}>{children}</div>
+      </div>
+    </div>
   );
 }

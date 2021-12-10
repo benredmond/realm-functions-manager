@@ -11,13 +11,12 @@ export const TopNavVariant = {
 export default function TopNav({ variant, title = "Realm Functions Manager" }) {
   return (
     <>
-      <div>
-        <Head>
-          <title>{title}</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <H1>Realm Functions Manager</H1>
-      </div>
+      <Head>
+        <title>{title}</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <H1>Realm Functions Manager</H1>
       <div className="function-search-list">
         <Search functions={[]} setActiveFunctions={() => {}} />
       </div>
