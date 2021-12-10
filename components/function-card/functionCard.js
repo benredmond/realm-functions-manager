@@ -2,6 +2,8 @@ import { Body, H3 } from "@leafygreen-ui/typography";
 import Card from "@leafygreen-ui/card";
 import { useState } from "react";
 
+import styles from "./styles.module.css";
+
 export default function FunctionCard({ func, greyBackground }) {
   const [style, setStyle] = useState({
     background: greyBackground ? "#e8e8e8" : "white",
@@ -9,7 +11,7 @@ export default function FunctionCard({ func, greyBackground }) {
 
   return (
     <Card
-      className="function-card"
+      className={styles.functionCard}
       style={style}
       onMouseEnter={(e) => {
         setStyle((prevState) => ({
@@ -26,13 +28,13 @@ export default function FunctionCard({ func, greyBackground }) {
     >
       <H3>{func.name}</H3>
       <Body style={{ marginTop: "0.5rem" }}>{func.description}</Body>
-      <div className="function-card-body">
+      <div className={styles.functionCardBody}>
         <Body className="function-tags-container">
           <div style={{ display: "flex" }}>
             Tags: <div className="tags"> #{func.tags.join(" #")}</div>
           </div>
         </Body>
-        <Body className="function-downloads-container">
+        <Body className={styles.functionDownloadsContainer}>
           {func.downloads.length} downloads
         </Body>
       </div>
