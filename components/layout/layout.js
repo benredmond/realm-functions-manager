@@ -6,6 +6,11 @@ export const LayoutVariant = {
   SearchPage: "search-page",
 };
 
+const variantToTopNavVariant = {
+  [LayoutVariant.LandingPage]: TopNavVariant.Large,
+  [LayoutVariant.SearchPage]: TopNavVariant.Small,
+};
+
 const variantToTitle = {
   [LayoutVariant.LandingPage]: "Realm Functions Manager",
   [LayoutVariant.SearchPage]: "Realm Functions Manager - Search",
@@ -18,7 +23,10 @@ export default function Layout({
   return (
     <div className={styles.background}>
       <div className={styles.foreground}>
-        <TopNav variant={TopNavVariant.Small} title={variantToTitle[variant]} />
+        <TopNav
+          variant={variantToTopNavVariant[variant]}
+          title={variantToTitle[variant]}
+        />
         <div className={styles.container}>{children}</div>
       </div>
     </div>

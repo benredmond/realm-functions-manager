@@ -1,13 +1,12 @@
-import { H1, H3 } from "@leafygreen-ui/typography";
 import Layout, { LayoutVariant } from "../components/layout/layout";
 
 export default function Home({}) {
   return (
     <Layout variant={LayoutVariant.LandingPage}>
-      <H1>Keybindings:</H1>
+      <h1>keybindings:</h1>
       <div>
-        <H3>[Cmd+P] - Focus on search bar from anywhere</H3>
-        <H3>[/] - Focus on search bar from anywhere</H3>
+        <h3>[Cmd+P] - focus on search bar from anywhere</h3>
+        <h3>[/] - focus on search bar from anywhere</h3>
       </div>
     </Layout>
   );

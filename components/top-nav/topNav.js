@@ -1,6 +1,5 @@
 import Head from "next/head";
 import SearchBar from "../search-bar";
-import { H1 } from "@leafygreen-ui/typography";
 
 import styles from "./styles.module.css";
 
@@ -14,9 +13,24 @@ export default function TopNav({ variant, title = "Realm Functions Manager" }) {
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="preload"
+          href="/fonts/Montserrat/Montserrat-Bold.ttf"
+          as="font"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/Montserrat/Montserrat-Black.ttf"
+          as="font"
+          crossOrigin=""
+        />
       </Head>
 
-      <H1>Realm Functions Manager</H1>
+      <h1>realm functions manager</h1>
+      {variant === TopNavVariant.Large && (
+        <h3>"like npm but for realm functions!" - someone</h3>
+      )}
       <div className={styles.searchBar}>
         <SearchBar functions={[]} setActiveFunctions={() => {}} />
       </div>

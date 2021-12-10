@@ -1,5 +1,4 @@
 import FunctionCard from "./function-card";
-import { H3 } from "@leafygreen-ui/typography";
 import Link from "next/link";
 
 export default function FunctionList({ functions }) {
@@ -14,7 +13,7 @@ export default function FunctionList({ functions }) {
           </Link>
         ))
       ) : (
-        <H3>No functions found</H3>
+        <h3>No functions found</h3>
       )}
     </>
   );

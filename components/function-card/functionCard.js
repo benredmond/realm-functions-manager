@@ -1,4 +1,3 @@
-import { Body, H3 } from "@leafygreen-ui/typography";
 import Card from "@leafygreen-ui/card";
 import { useState } from "react";
 
@@ -26,17 +25,17 @@ export default function FunctionCard({ func, greyBackground }) {
         }));
       }}
     >
-      <H3>{func.name}</H3>
-      <Body style={{ marginTop: "0.5rem" }}>{func.description}</Body>
+      <h3>{func.name}</h3>
+      <p style={{ marginTop: "0.5rem" }}>{func.description}</p>
       <div className={styles.functionCardBody}>
-        <Body className="function-tags-container">
+        <p className="function-tags-container">
           <div style={{ display: "flex" }}>
             Tags: <div className="tags"> #{func.tags.join(" #")}</div>
           </div>
-        </Body>
-        <Body className={styles.functionDownloadsContainer}>
+        </p>
+        <p className={styles.functionDownloadsContainer}>
           {func.downloads.length} downloads
-        </Body>
+        </p>
       </div>
     </Card>
   );

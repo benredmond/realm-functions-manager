@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Search from "../components/search-bar";
-import { H1 } from "@leafygreen-ui/typography";
+import Layout from "../components/layout";
 import { useEffect, useState } from "react";
 import FunctionList from "../components/functionList";
+import { LayoutVariant } from "../components/layout/layout";
 
 const functionsPerPage = 2;
 
@@ -24,13 +25,13 @@ export default function Home({ functions }) {
   };
 
   return (
-    <>
+    <Layout variant={LayoutVariant.SearchPage}>
       <Head>
         <title>Realm Functions Manager</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container">
-        <H1>Realm Functions Manager</H1>
+        <h1>Realm Functions Manager</h1>
       </div>
       <div>
         <main>
@@ -45,7 +46,7 @@ export default function Home({ functions }) {
           </div>
         </main>
       </div>
-    </>
+    </Layout>
   );
 }
 

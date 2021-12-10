@@ -1,8 +1,3 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
-import FunctionCard from "../../components/functionCard";
-import { H1, H2, H3, Body, Subtitle } from "@leafygreen-ui/typography";
-import Card from "@leafygreen-ui/card";
 import Code from "@leafygreen-ui/code";
 import Head from "next/head";
 
@@ -100,19 +95,19 @@ export default function Function({ func }) {
       <div className="container">
         {func !== null && func !== undefined ? (
           <div style={{ width: "30%" }}>
-            <H1 style={{ paddingBottom: "1rem" }}>{func.name}</H1>
-            <Body>{func.description}</Body>
-            <Body>Function Dependencies:</Body>
+            <h1 style={{ paddingBottom: "1rem" }}>{func.name}</h1>
+            <p>{func.description}</p>
+            <p>Function Dependencies:</p>
             <ul style={{ marginTop: "0rem", paddingLeft: "1.5rem" }}>
               {func.dependencies.map((dep, idx) => (
                 <li key={idx}>{dep}</li>
               ))}
             </ul>
-            <Body>{func.dependencies}</Body>
+            <p>{func.dependencies}</p>
             <Code language="javascript">{func.raw}</Code>
           </div>
         ) : (
-          <H3>No functions found</H3>
+          <h3>No functions found</h3>
         )}
       </div>
     </>
