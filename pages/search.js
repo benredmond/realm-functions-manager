@@ -40,6 +40,7 @@ export default function Home({ functions, query }) {
           }
         }}
       />
+      <h3 className="search-title">Search Results</h3>
       <div className="function-search-list">
         <FunctionList functions={functionsOnPage} />
         <Pagination

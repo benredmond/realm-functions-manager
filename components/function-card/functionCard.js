@@ -1,5 +1,6 @@
 import Card from "@leafygreen-ui/card";
 import { useState } from "react";
+import Tags from "../tags";
 
 import styles from "./styles.module.css";
 
@@ -27,6 +28,7 @@ export default function FunctionCard({ func, greyBackground }) {
     >
       <h3>{func.name}</h3>
       <p style={{ marginTop: "0.5rem" }}>{func.description}</p>
+      <Tags tags={func.tags} style={{ flex: 1 }} />
       <div className={styles.functionCardBody}>
         <p className="function-tags-container">
           <div style={{ display: "flex" }}>

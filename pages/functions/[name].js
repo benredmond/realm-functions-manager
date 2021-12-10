@@ -1,35 +1,11 @@
 import Code from "@leafygreen-ui/code";
-import Head from "next/head";
-import Layout, { LayoutVariant } from "../../components/layout";
-
-export default function Function({ func }) {
-  return (
-    <Layout variant={LayoutVariant.FunctionPage}>
-      <Head>
-        <title>Realm Functions Manager</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="container">
-        {func !== null && func !== undefined ? (
-          <div style={{ width: "30%" }}>
-            <h1 style={{ paddingBottom: "1rem" }}>{func.name}</h1>
-            <p>{func.description}</p>
-            <p>Function Dependencies:</p>
-            <ul style={{ marginTop: "0rem", paddingLeft: "1.5rem" }}>
-              {func.dependencies.map((dep, idx) => (
-                <li key={idx}>{dep}</li>
-              ))}
-            </ul>
-            <p>{func.dependencies}</p>
-            <Code language="javascript">{func.raw}</Code>
-          </div>
-        ) : (
-          <h3>No functions found</h3>
-        )}
-      </div>
-    </Layout>
-  );
-}
+import Copyable from "@leafygreen-ui/copyable";
+import Description from "../../components/description";
+import Tags from "../../components/tags";
+import Dependencies from "../../components/dependencies";
+import Author from "../../components/author";
+import Layout from "../../components/layout";
+import { LayoutVariant } from "../../components/layout";
 
 export async function getStaticPaths() {
   const res = await fetch(
@@ -85,7 +61,7 @@ export async function getStaticProps({ params }) {
         query: `{
             function_registry(query: {name:"${params.name}"}) {
                 name
-                owner_id
+                owner_email
                 tags
                 downloads
                 dependencies
@@ -113,4 +89,35 @@ export async function getStaticProps({ params }) {
     // - At most once every 10 seconds
     revalidate: 60, // In seconds
   };
+}
+
+export default function Function({ func }) {
+  return (
+    <Layout variant={LayoutVariant.FunctionPage}>
+      <div>
+        {func !== null && func !== undefined ? (
+          <div
+            style={{ width: "40%", marginLeft: "auto", marginRight: "auto" }}
+            className="container"
+          >
+            <div style={{ flex: "auto" }}>
+              <h1 style={{ paddingBottom: "1rem" }}>{func.name}</h1>
+              <Author author={func.owner_email} />
+              <Tags tags={func.tags} style={{ flex: 1 }} />
+              <Description description={func.description} />
+              <Dependencies dependencies={func.dependencies} />
+              <div style={{ marginTop: "1rem" }}>
+                <Code language="javascript">{func.raw}</Code>
+              </div>
+            </div>
+            <div style={{ flex: 1, marginLeft: "3rem", width: "10%" }}>
+              <Copyable label="Install">rfm i -s {func.name}</Copyable>
+            </div>
+          </div>
+        ) : (
+          <h3 style={{ color: "#8F221B" }}>No functions found</h3>
+        )}
+      </div>
+    </Layout>
+  );
 }

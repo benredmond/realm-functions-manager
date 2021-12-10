@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 export const LayoutVariant = {
   LandingPage: "landing-page",
   SearchPage: "search-page",
+  FunctionPage: "function-page",
 };
 
 const variantToTopNavVariant = {
