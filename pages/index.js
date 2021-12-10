@@ -90,7 +90,6 @@ export async function getStaticProps() {
                 owner_email
                 tags
                 downloads
-                dependencies
                 description
             }
         }`,
