@@ -1,9 +1,10 @@
 import Code from "@leafygreen-ui/code";
 import Head from "next/head";
+import Layout, { LayoutVariant } from "../../components/layout";
 
 export default function Function({ func }) {
   return (
-    <>
+    <Layout variant={LayoutVariant.FunctionPage}>
       <Head>
         <title>Realm Functions Manager</title>
         <link rel="icon" href="/favicon.ico" />
@@ -26,7 +27,7 @@ export default function Function({ func }) {
           <h3>No functions found</h3>
         )}
       </div>
-    </>
+    </Layout>
   );
 }
 

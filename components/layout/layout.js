@@ -9,6 +9,7 @@ export const LayoutVariant = {
 const variantToTopNavVariant = {
   [LayoutVariant.LandingPage]: TopNavVariant.Large,
   [LayoutVariant.SearchPage]: TopNavVariant.Small,
+  [LayoutVariant.FunctionPage]: TopNavVariant.Small,
 };
 
 const variantToTitle = {
@@ -19,13 +20,14 @@ const variantToTitle = {
 export default function Layout({
   variant = LayoutVariant.SearchPage,
   children,
+  title,
 }) {
   return (
     <div className={styles.background}>
       <div className={styles.foreground}>
         <TopNav
           variant={variantToTopNavVariant[variant]}
-          title={variantToTitle[variant]}
+          title={title ? title : variantToTitle[variant]}
         />
         <div className={styles.container}>{children}</div>
       </div>
